@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Groovy Tunes Player</title>
+    <link rel="manifest" href="manifest.json">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div id="now-playing">
+            <img id="album-art" src="vinyl-stock.png" alt="Album Art">
+            <div id="track-info">
+                <h2 id="track-title">No track selected</h2>
+                <p id="track-artist">Select a track to play</p>
+            </div>
+            <div id="seek-container">
+                <span id="current-time">0:00</span>
+                <input type="range" id="seek-bar" value="0">
+                <span id="duration">0:00</span>
+            </div>
+            <div id="player-controls">
+                <button id="shuffle"><i class="fas fa-random"></i></button>
+                <button id="prev"><i class="fas fa-step-backward"></i></button>
+                <button id="play-pause"><i class="fas fa-play"></i></button>
+                <button id="next"><i class="fas fa-step-forward"></i></button>
+                <button id="repeat"><i class="fas fa-redo"></i></button>
+            </div>
+        </div>
+        <div id="volume-container">
+            <i class="fas fa-volume-up"></i>
+            <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
+        </div>
+        <ul id="playlist"></ul>
+        <div class="playlist-buttons">
+            <input type="file" id="load-files" accept="audio/*" multiple>
+            <label for="load-files">Load Music</label>
+            <button id="save-playlist">Save Playlist</button>
+            <button id="load-playlist">Load Playlist</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
