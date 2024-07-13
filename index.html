@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Groovy Tunes Player</title>
-    <link rel="manifest" href="manifest.json">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Groovy Tunes Player</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <div id="now-playing">
-            <img id="album-art" src="vinyl-stock.png" alt="Album Art">
+    <div class="app-container">
+        <div class="main-interface">
+            <div id="artwork-container">
+                <canvas id="visualizer"></canvas>
+                <img id="album-art" src="vinyl-stock.png" alt="Album Art">
+            </div>
             <div id="track-info">
                 <h2 id="track-title">No track selected</h2>
                 <p id="track-artist">Select a track to play</p>
@@ -22,26 +23,51 @@
                 <input type="range" id="seek-bar" value="0">
                 <span id="duration">0:00</span>
             </div>
-            <div id="player-controls">
+            <div id="controls-row">
                 <button id="shuffle"><i class="fas fa-random"></i></button>
                 <button id="prev"><i class="fas fa-step-backward"></i></button>
                 <button id="play-pause"><i class="fas fa-play"></i></button>
                 <button id="next"><i class="fas fa-step-forward"></i></button>
                 <button id="repeat"><i class="fas fa-redo"></i></button>
+                <div id="volume-container">
+                    <i class="fas fa-volume-up"></i>
+                    <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
+                </div>
+            </div>
+            <div id="bottom-controls">
+                <button id="toggle-playlist"><i class="fas fa-list"></i></button>
+                <input type="file" id="load-folder" webkitdirectory directory multiple>
+                <label for="load-folder"><i class="fas fa-folder-open"></i></label>
             </div>
         </div>
-        <div id="volume-container">
-            <i class="fas fa-volume-up"></i>
-            <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
-        </div>
-        <ul id="playlist"></ul>
-        <div class="playlist-buttons">
-            <input type="file" id="load-files" accept="audio/*" multiple>
-            <label for="load-files">Load Music</label>
-            <button id="save-playlist">Save Playlist</button>
-            <button id="load-playlist">Load Playlist</button>
+
+        <div class="playlist-container">
+            <div class="playlist-header">
+                <input type="text" id="search-bar" placeholder="Search playlist...">
+                <button id="sleep-timer"><i class="fas fa-moon"></i></button>
+            </div>
+            <ul id="playlist"></ul>
         </div>
     </div>
+
+    <div id="sleep-timer-modal" class="modal">
+        <div class="modal-content">
+            <h2>Set Sleep Timer</h2>
+            <div class="timer-options">
+                <button data-time="15">15 min</button>
+                <button data-time="30">30 min</button>
+                <button data-time="45">45 min</button>
+                <button data-time="60">1 hour</button>
+            </div>
+            <div class="custom-timer">
+                <input type="number" id="custom-sleep-time" min="1" placeholder="Custom (minutes)">
+                <button id="start-custom-sleep-timer">Set</button>
+            </div>
+            <button id="close-sleep-timer">Cancel</button>
+        </div>
+    </div>
+
+    <script src="visualizer.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
